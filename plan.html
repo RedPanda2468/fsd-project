@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Plans</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+        }
+
+        header {
+            background-color: #008080;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            font-size: 36px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 50px;
+        }
+
+        .plan-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 20px;
+            padding: 30px;
+            text-align: center;
+            position: relative; /* For positioning the ribbon */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Hover effect */
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(to right, #8C0AA9, #4D0180)  /* Dark Violet to Deep Indigo */
+            
+
+
+
+
+
+
+
+
+
+; /* Gradient background */
+            color: white; /* Text color changes to white */
+        }
+
+        .plan-card:hover .plan-title,
+        .plan-card:hover .plan-price,
+        .plan-card:hover .plan-details,
+        .plan-card:hover .extra-perks li {
+            color: white; /* Ensure all text remains visible */
+        }
+
+        .plan-card:hover .original-price {
+            color: #ffcccc; /* Slightly faded for strikethrough price */
+        }
+
+        /* Ribbon Style */
+        .ribbon {
+            position: absolute;
+            top: 30px;
+            right: -0px;
+            background-color: #e63946;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 5px 15px;
+            transform: rotate(45deg);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .plan-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .plan-price {
+            font-size: 38px;
+            font-weight: bold;
+            color: #009688;
+            margin: 10px 0;
+        }
+
+        .original-price {
+            font-size: 18px;
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .plan-details {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .extra-perks ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .extra-perks li {
+            font-size: 16px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .extra-perks li .icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .check {
+            color: #28a745; /* Green for available features */
+        }
+
+        .cross {
+            color: #e63946; /* Red for unavailable features */
+        }
+
+        .buy-button {
+            background-color: #009688;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-button:hover {
+            background-color: #00796b;
+        }
+
+        .emi-option {
+            background-color: #ff4081;
+            color: white;
+            padding: 10px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        .emi-option:hover {
+            background-color: #f50057;
+        }
+
+        footer {
+            background-color: #008080;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    Get Premium Services Anytime, Anywhere
+</header>
+
+<div class="container">
+    <!-- Weekly Plan -->
+    <div class="plan-card">
+        <div class="ribbon">33% OFF</div>
+        <div class="plan-title">Weekly Plan</div>
+        <div class="plan-price">
+            ₹999 
+            <span class="original-price">₹1500</span>
+        </div>
+        <div class="plan-details">
+            <p>Hire cleaning, plumbing, and photography services for one week, absolutely free of additional charges.</p>
+            <p>Perfect for short-term needs.</p>
+        </div>
+        <div class="extra-perks">
+            <ul>
+                <li><span class="icon check">✅</span> 24/7 support</li>
+                <li><span class="icon check">✅</span> Flexible booking</li>
+                <li><span class="icon cross">❌</span> Free expert consultations</li>
+                <li><span class="icon cross">❌</span> Priority booking</li>
+            </ul>
+        </div>
+        <a href="#" class="buy-button" id="buy-weekly">Buy Now</a>
+        <a href="#" class="emi-option" id="emi-weekly">Pay with EMI</a>
+    </div>
+
+    <!-- Monthly Plan -->
+    <div class="plan-card">
+        <div class="ribbon">33% OFF</div>
+        <div class="plan-title">Monthly Plan</div>
+        <div class="plan-price">
+            ₹3999 
+            <span class="original-price">₹6000</span>
+        </div>
+        <div class="plan-details">
+            <p>Enjoy unlimited services for an entire month, with free expert consultations and priority booking.</p>
+            <p> Most Popular</p>
+        </div>
+        <div class="extra-perks">
+            <ul>
+                <li><span class="icon check">✅</span> 24/7 support</li>
+                <li><span class="icon check">✅</span> Flexible booking</li>
+                <li><span class="icon check">✅</span> Free expert consultations</li>
+                <li><span class="icon check">✅</span> Priority booking</li>
+            </ul>
+        </div>
+        <a href="#" class="buy-button" id="buy-monthly">Buy Now</a>
+        <a href="#" class="emi-option" id="emi-monthly">Pay with EMI</a>
+    </div>
+
+    <!-- Yearly Plan -->
+    <div class="plan-card">
+        <div class="ribbon">50% OFF</div>
+        <div class="plan-title">Yearly Plan</div>
+        <div class="plan-price">
+            ₹24,999 
+            <span class="original-price">₹50,000</span>
+        </div>
+        <div class="plan-details">
+            <p>Best value! Enjoy premium services all year round with free consultations, exclusive discounts, and priority support.</p>
+        </div>
+        <div class="extra-perks">
+            <ul>
+                <li><span class="icon check">✅</span> 24/7 support</li>
+                <li><span class="icon check">✅</span> Flexible booking</li>
+                <li><span class="icon check">✅</span> Free expert consultations</li>
+                <li><span class="icon check">✅</span> Priority booking</li>
+                <li><span class="icon check">✅</span> Exclusive discounts</li>
+            </ul>
+        </div>
+        <a href="#" class="buy-button" id="buy-yearly">Buy Now</a>
+        <a href="#" class="emi-option" id="emi-yearly">Pay with EMI</a>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Service Provider App - All Rights Reserved
+</footer>
+<script src="PaymentGateway.js"></script>
+
+</body>
+</html>

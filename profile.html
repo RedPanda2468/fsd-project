@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Profile</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+      color: #000;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .dark-mode {
+      background-color: #121212;
+      color: #fff;
+    }
+    
+    .profile-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 5px;
+      
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s, color 0.3s;
+      width: 100%;
+      max-width: 400px; /* Maintain responsiveness */
+      box-sizing: border-box;
+      
+    }
+    
+    .dark-mode .profile-container {
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+    }
+    
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .profile-image:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 3px solid #ccc;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    
+    .dark-mode .profile-image:after {
+      border: 3px solid #555;
+    }
+    
+    .upload-icon {
+      position: relative;
+    }
+    
+    .upload-icon i {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 5px;
+      border-radius: 50%;
+    }
+    
+    form {
+      width: 100%; /* Ensure form spans container width */
+      max-width: 100%;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 90%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background-color: #f9f9f9;
+      color: #000;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .dark-mode input[type="text"],
+    .dark-mode input[type="email"],
+    .dark-mode textarea {
+      background-color: #333;
+      color: #fff;
+      border: 1px solid #555;
+    }
+    
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    button:hover {
+      background-color: #45a049;
+    }
+    
+    .dark-mode button {
+      background-color: #5cb85c;
+    }
+    
+    .toggle-dark-mode {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 5px 10px;
+      background-color: #ddd;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .dark-mode .toggle-dark-mode {
+      background-color: #444;
+      color: #fff;
+      border: 1px solid #555;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .profile-container {
+        padding: 15px;
+      }
+    
+      .profile-image {
+        width: 120px;
+        height: 120px;
+      }
+    
+      .upload-icon i {
+        font-size: 20px;
+      }
+    
+      button {
+        padding: 8px 15px;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+
+  <button class="toggle-dark-mode"> Dark Mode</button>
+
+  <div class="profile-container">
+    <h2>Profile</h2>
+
+    <div class="profile-image">
+      <img id="profile-pic" src="data:image/jpeg;base64,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" alt="Profile Picture"> 
+      <div class="upload-icon">
+        <i class="fas fa-camera"></i> 
+      </div>
+    </div>
+
+    <input type="file" id="fileInput" style="display: none;" accept="image/*"> 
+
+    <form>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email">
+
+      <label for="phone">Phone Number:</label>
+      <input type="text" id="phone" name="phone" placeholder="Enter your phone number">
+
+      <label for="address">Address:</label>
+      <textarea id="address" name="address" rows="4" placeholder="Enter your address"></textarea>
+
+      <button type="submit">Save Profile</button>
+    </form>
+  </div>
+
+  <script>
+    const profileImage = document.querySelector('.profile-image');
+    const profilePic = document.getElementById('profile-pic');
+    const fileInput = document.getElementById('fileInput');
+    const toggleDarkModeButton = document.querySelector('.toggle-dark-mode');
+
+    profileImage.addEventListener('click', () => {
+      fileInput.click(); 
+    });
+
+    fileInput.addEventListener('change', () => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        profilePic.src = e.target.result; 
+      };
+      reader.readAsDataURL(fileInput.files[0]); 
+    });
+
+    toggleDarkModeButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
+
+</body>
+</html>
